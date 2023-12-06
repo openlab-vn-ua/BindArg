@@ -48,9 +48,7 @@ class MyDevice
 
 # API Reference
 
-## Allocate gate
-
-### bindArgGateThisAllocate
+## bindArgGateThisAllocate
 ```cpp
 bindArgVoidFunc_t bindArgGateThisAllocate(void (T::*method)(), T* objPtr);
 ```
@@ -71,7 +69,7 @@ The function is useful when attaching interrupt handlers to object methods.
 
 **note** The number of available gates is limited (~30), so if you ever do not need the gate you should free it via `bindArgGateFree`
 
-### bindArgGateFuncAllocate
+## bindArgGateFuncAllocate
 ```cpp
 bindArgVoidFunc_t bindArgGateFuncAllocate(void (*func)(T*), T* arg);
 ```
@@ -84,11 +82,36 @@ Takes `void func(type *arg)` func and `type *arg` parameter to be passed to the 
 Function is useful when attaching interrupt handlers, that need object/struct-like arguments
 
 **param** func function `void func(type *arg)` to be to bind 
+
 **param** arg `type *` parameter to be supplied to func when gate will be called
-**return** function that has `void gate(void)` prototype to be used as a callback (or interrupt handler)
+
+**return** function that has `void gate(void)` prototype to be used as a callback (or interrupt handler) or nullptr if no more gates are available
+
 **note** The number of available gates is limited (~30), so if you ever do not need the gate you should free it via `bindArgGateFree`
 
-### bindArgGateFree
+## bindArgGateVoidAllocate
+```cpp
+bindArgVoidFunc_t bindArgGateVoidAllocate(void (*func)(void *), void* arg);
+```
+Allocates `void gate(void)` bind gate for untyped `void func(void *arg)` function + `void *arg`. 
+
+The gate calls original func with the argument supplied at gate allocation time (so argument "bound" with func at gate).
+The function is equivalent of `gate = std::bind(func, arg)`, but returns "pure" `void gate(void)` function.
+Takes `void func(void *arg)` func and `void *arg` parameter to be passed to the func when bind gate is called.
+
+*This is a more expert and old-school C-like style of passing user-defined arguments, but in most cases, the use of `bindArgGateFuncAllocate` is preferred as more type-safe.*
+
+Function is useful when attaching interrupt handlers, that need object/struct-like arguments
+
+**param** func function `void func(void *arg)` to be to bind 
+
+**param** arg `void *` parameter to be supplied to func when gate will be called
+
+**return** function that has `void gate(void)` prototype to be used as a callback (or interrupt handler) or nullptr if no more gates are available
+
+**note** The number of available gates is limited (~30), so if you ever do not need the gate you should free it via `bindArgGateFree`
+
+## bindArgGateFree
 ```cpp
 void bindArgGateFree(bindArgVoidFunc_t gate);
 ```
