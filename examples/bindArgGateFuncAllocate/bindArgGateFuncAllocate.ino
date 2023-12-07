@@ -34,8 +34,8 @@ void loop()
 {
   Serial.println("Hello from classes:");
 
-  fooCall(); // No params supplied here, but actual `this` for `foo` object will be passed
-  barCall(); // No params supplied here, but actual `this` for `bar` object will be passed
+  fooCall(); // No params supplied here, but actual pointer to `foo` struct will be passed
+  barCall(); // No params supplied here, but actual pointer to `bar` struct will be passed
 
   delay(1000);
 }
