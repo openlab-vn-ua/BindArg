@@ -1,5 +1,6 @@
 # BindArg
-![Build Status](https://github.com/openlab-vn-ua/BindArg/actions/workflows/githubci.yml/badge.svg)
+![Build CI Status](https://github.com/openlab-vn-ua/BindArg/actions/workflows/githubci.yml/badge.svg)
+![Lib Lint Status](https://github.com/openlab-vn-ua/BindArg/actions/workflows/arduino-lint-lib.yml/badge.svg)
 
 Binder to allow use functions with pointer argument in Arduino interrupt handlers where only void func(void) allowed.
 
