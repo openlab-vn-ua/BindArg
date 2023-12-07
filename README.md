@@ -1,5 +1,5 @@
 # BindArg
-[![Build Status](https://github.com/adafruit/Adafruit-BMP085-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/openlab-vn-ua/BindArg/actions)
+![Build Status](https://github.com/openlab-vn-ua/BindArg/actions/workflows/githubci.yml/badge.svg)
 
 Binder to allow use functions with pointer argument in Arduino interrupt handlers where only void func(void) allowed.
 
