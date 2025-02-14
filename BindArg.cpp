@@ -2,7 +2,7 @@
 
 // function/data decorators
 
-#if defined(ESP_PLATFORM) || defined(ESP32)
+#if defined(ESP_PLATFORM) || defined(ESP32) || defined(ESP8266)
 #include <Arduino.h> // just for IRAM_ATTR
 #if !defined(bindArgStaticVoidFuncAttr)
 #define bindArgStaticVoidFuncAttr IRAM_ATTR
